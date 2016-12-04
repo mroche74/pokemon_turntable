@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pokemon Turntable</title>
+    <link href="https://bootswatch.com/yeti/bootstrap.min.css" rel="stylesheet"/>
+    <link href="pokemon_turntable.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="pokemon_turntable.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row header">
+        <div class="col-md-12">
+            Pokemon Carousel
+        </div>
+    </div>
+    <div class="row sub-header">
+        <div class="col-md-12">
+            This site is designed to load Pokemon information (the first 10 Pokemon) via AJAX request using the REST API described here: https://pokeapi.co/
+        </div>
+    </div>
+</div>
+
+<div id="status"><span>Loading Pokemon Info...</span></div>
+
+<div id="carousel" class="hidden">
+    <img src="back.png" />
+    <div id="spinner">
+        <div class="frame" >
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="pm-name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img class="carousel-img" alt="" />
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li class="pm-weight"></li>
+                            <li class="pm-height"></li>
+                            <li class="pm-species"></li>
+                            <li class="pm-abilities">Abilities:<ul></ul></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="frame faded">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="pm-name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img class="carousel-img" alt="" />
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li class="pm-weight"></li>
+                            <li class="pm-height"></li>
+                            <li class="pm-species"></li>
+                            <li class="pm-abilities">Abilities:<ul></ul></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="frame faded">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="pm-name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img class="carousel-img" alt="" />
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li class="pm-weight"></li>
+                            <li class="pm-height"></li>
+                            <li class="pm-species"></li>
+                            <li class="pm-abilities">Abilities:<ul></ul></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="frame faded">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="pm-name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img class="carousel-img" alt="" />
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li class="pm-weight"></li>
+                            <li class="pm-height"></li>
+                            <li class="pm-species"></li>
+                            <li class="pm-abilities">Abilities:<ul></ul></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="frame faded">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="pm-name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img class="carousel-img" alt="" />
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li class="pm-weight"></li>
+                            <li class="pm-height"></li>
+                            <li class="pm-species"></li>
+                            <li class="pm-abilities">Abilities:<ul></ul></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="frame faded">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="pm-name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img class="carousel-img" alt="" />
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li class="pm-weight"></li>
+                            <li class="pm-height"></li>
+                            <li class="pm-species"></li>
+                            <li class="pm-abilities">Abilities:<ul></ul></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="frame faded">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="pm-name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img class="carousel-img" alt="" />
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li class="pm-weight"></li>
+                            <li class="pm-height"></li>
+                            <li class="pm-species"></li>
+                            <li class="pm-abilities">Abilities:<ul></ul></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="frame faded">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="pm-name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img class="carousel-img" alt="" />
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li class="pm-weight"></li>
+                            <li class="pm-height"></li>
+                            <li class="pm-species"></li>
+                            <li class="pm-abilities">Abilities:<ul></ul></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="frame faded">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="pm-name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img class="carousel-img" alt="" />
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li class="pm-weight"></li>
+                            <li class="pm-height"></li>
+                            <li class="pm-species"></li>
+                            <li class="pm-abilities">Abilities:<ul></ul></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="frame faded">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="pm-name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img class="carousel-img" alt="" />
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li class="pm-weight"></li>
+                            <li class="pm-height"></li>
+                            <li class="pm-species"></li>
+                            <li class="pm-abilities">Abilities:<ul></ul></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <img src="forward.png" />
+</div>
+
+<!-- for IE -->
+<div id="slider-wrapper" class="hidden">
+    <img src="back.png" onclick="slideImgClicked();" />
+    <div class="frame-ie" >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1 class="pm-name-ie"></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <img class="slide-img" alt="" />
+                </div>
+                <div class="col-xs-9">
+                    <ul>
+                        <li class="pm-weight-ie"></li>
+                        <li class="pm-height-ie"></li>
+                        <li class="pm-species-ie"></li>
+                        <li class="pm-abilities-ie">Abilities:<ul></ul></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="forward.png" onclick="slideImgClicked('f');"/>
+</div>
+
+
+</body>
+</html>
