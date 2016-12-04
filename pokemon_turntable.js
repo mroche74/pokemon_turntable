@@ -77,12 +77,12 @@ $(document).ready(function(){
                     $('#spinner').on("swiperight", function(e){
                         console.log('swiperight');
                         clearInterval(xTimer);
-                        xTurner.spin(f);
+                        xTurner.spin();
                     });
                     $('#spinner').on("swipeleft", function(e){
                         console.log('swipeleft');
                         clearInterval(xTimer);
-                        xTurner.spin();
+                        xTurner.spin('f');
                     });
                     $('div.header > div:last-child').fadeOut(1000);
                     clearInterval(xPTimer);
