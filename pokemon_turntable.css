@@ -32,10 +32,12 @@ div#status{
     text-align:center;
     font-size:42px;
 }
+
 div#status > span{
     display:table-cell;
     vertical-align:middle;
 }
+
 div#carousel{
     padding-top:30px;
     position:absolute;
