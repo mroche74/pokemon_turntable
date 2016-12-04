@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Pokemon Turntable</title>
+    <meta charset="utf-8">
+    <title>Pokemon Carousel</title>
     <link href="https://bootswatch.com/yeti/bootstrap.min.css" rel="stylesheet"/>
     <link href="pokemon_turntable.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -10,22 +11,27 @@
 <body>
 <div class="container-fluid">
     <div class="row header">
-        <div class="col-md-12">
-            Pokemon Carousel
+        <div class="col-md-8">
+            Pokémon Carousel
+        </div>
+        <div class="col-md-4">
+
         </div>
     </div>
     <div class="row sub-header">
         <div class="col-md-12">
-            This site is designed to load Pokemon information (the first 10 Pokemon) via AJAX request using the REST API described here: https://pokeapi.co/
+            This site is designed to load Pokémon information (the first 10 Pokémon) via AJAX request using the REST API available at: https://pokeapi.co/
         </div>
     </div>
 </div>
 
-<div id="status"><span>Loading Pokemon Info...</span></div>
+<div id="status"><span></span></div>
 
 <div id="carousel" class="hidden">
     <img src="back.png" />
     <div id="spinner">
+
+
         <div class="frame" >
             <div class="container-fluid">
                 <div class="row">
@@ -246,8 +252,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
     <img src="forward.png" />
 </div>
 

@@ -1,13 +1,12 @@
 "use strict";
 
-var xAngle = 0;
-var xTimer;
-var xDelta; 
-var xPM = [];
-var j = 1;
 
 $(document).ready(function(){
 
+    var xTimer;
+    var j = 1;
+
+    // --- IE does not support CSS3 transformations so check for IE and notify user if found
     var xUA = window.navigator.userAgent;
     var xMSIE = xUA.indexOf("MSIE ");
     if (xMSIE > 0 || window.ActiveXObject || "ActiveXObject" in window){
@@ -19,29 +18,37 @@ $(document).ready(function(){
         $('#carousel').removeClass("hidden");
     }
 
-    var xImgCount = $('.carousel-img').length;
-    xDelta = 360/xImgCount;
-    
-    for(var i=0; i<xImgCount; i++){
-        $('#spinner .frame:nth-child('+ (i+1) +')').css('transform', 'rotateY('+ -(i*xDelta) +'deg)');
+    //------ show 'Loading data...' in upper right of header while AJAX calls are made
+    var xDots = 0;
+    var xPTimer = setInterval(function () {
+        $('div.header > div:last-child').html('Loading Pokemon Data' + ' .'.repeat(xDots));
+        if(xDots == 3){
+            xDots = 0;
+        }else{
+            xDots++;
+        }
+    }, 750);
+
+    //----- determine how many pokemon the document is expecting and set CSS transformations for each
+    var xD = 360/($('.carousel-img').length);
+    for(var i=0; i<$('.carousel-img').length; i++){
+        $('#spinner .frame:nth-child('+ (i+1) +')').css('transform', 'rotateY('+ -(i*xD) +'deg)');
     }
-    
-    (function cycle(){
+
+    //----- make calls to pokemon API and display data
+    (function cycleAJAX(){
 
         $.ajax({
             url: "http://pokeapi.co/api/v2/pokemon/" + j
             ,type: "GET"
             ,dataType: "JSON"
-            ,timeOut: 5000
         })
 
             .fail(function(xResponse){
-                alert('Error: ' + JSON.stringify(xResponse));
+                alert('An error occurred while attempting to reach the Pokéapi API at: "http://pokeapi.co/api/v2/pokemon/' + j + '".  Check your internet connection and try again');
             })
 
             .done(function(xJSON){
-
-                xPM.push(xJSON);
 
                 var i = j - 1;
 
@@ -58,12 +65,13 @@ $(document).ready(function(){
                 });
 
                 j++;
-                if (j <= 10) {
-                    cycle();
+                if (j <= $('.carousel-img').length) {
+                    cycleAJAX();
                 }else{
-                    $('#status > span').fadeOut(1000);
+                    $('div.header > div:last-child').fadeOut(1000);
+                    clearInterval(xPTimer);
                     xTimer = window.setInterval(function () {
-                        turnCarousel('f');
+                        xTurner.spin('f');
                     }, 5000);
                     $('div#carousel > img').fadeIn(2000, function () {
                         $('div#carousel > img').toggleClass('transit');
@@ -75,42 +83,50 @@ $(document).ready(function(){
 
     $('div#carousel > img:first-child').click(function(){
         clearInterval(xTimer);
-        turnCarousel();
+        xTurner.spin();
     });
 
     $('div#carousel > img:last-child').click(function(){
         clearInterval(xTimer);
-        turnCarousel('f');
+        xTurner.spin('f');
     });
 
-    function turnCarousel(f){
+    var xTurner = (function turnCarousel(f){
         
         var xSpinner = document.querySelector("#spinner");
+        var xAngle = 0;
+        var xImgCount = $('.carousel-img').length;
+        var xDelta = 360/xImgCount;
 
-        if(!f){
-            xAngle += xDelta;
-        }else{
-            xAngle -= xDelta;
-        }
+        return {
+            spin: function (f) {
 
-        //----------------------- Forward and back buttons
-        $('#carousel > img').toggleClass('trans').delay(1500).queue(function(next) {
-            $(this).toggleClass('trans');
-            next();
-        });
+                if(!f){
+                    xAngle += xDelta;
+                }else{
+                    xAngle -= xDelta;
+                }
 
-        xSpinner.setAttribute("style","-webkit-transform: rotateY("+ xAngle +"deg); transform: rotateY("+ xAngle +"deg);");
+                //----------------------- Forward and back buttons
+                $('#carousel > img').toggleClass('trans').delay(1500).queue(function (next) {
+                    $(this).toggleClass('trans');
+                    next();
+                });
 
-        $('#spinner > div').addClass('faded');
+                xSpinner.setAttribute("style", "-webkit-transform: rotateY(" + xAngle + "deg); transform: rotateY(" + xAngle + "deg);");
 
-        if(xAngle > 360 || xAngle < -360){
-            var i = Math.round((xAngle%360)/xDelta);
-        }else{
-            var i = Math.round(xAngle/xDelta);
-        }
+                $('#spinner > div').addClass('faded');
 
-        var xF = $('.frame').get(i);
-        $(xF).removeClass('faded');
-    }
+                if (xAngle > 360 || xAngle < -360) {
+                    var i = Math.round((xAngle % 360) / xDelta);
+                } else {
+                    var i = Math.round(xAngle / xDelta);
+                }
+
+                var xF = $('.frame').get(i);
+                $(xF).removeClass('faded');
+            }
+        };
+    })();
     
 });
