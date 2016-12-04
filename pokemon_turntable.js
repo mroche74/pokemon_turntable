@@ -6,6 +6,12 @@ $(document).ready(function(){
     var xTimer;
     var j = 1;
 
+    //------- add spinner elements to DOM
+    var xE = $('#spinner').html();
+    for(var x=0; x<15; x++){
+        $('#spinner').append(xE);
+    }
+
     // --- IE does not support CSS3 transformations so check for IE and notify user if found
     var xUA = window.navigator.userAgent;
     var xMSIE = xUA.indexOf("MSIE ");
