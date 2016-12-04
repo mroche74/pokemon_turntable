@@ -74,6 +74,16 @@ $(document).ready(function(){
                 if (j <= $('.carousel-img').length) {
                     cycleAJAX();
                 }else{
+                    $('#spinner').on("swiperight", function(e){
+                        console.log('swiperight');
+                        clearInterval(xTimer);
+                        xTurner.spin(f);
+                    });
+                    $('#spinner').on("swipeleft", function(e){
+                        console.log('swipeleft');
+                        clearInterval(xTimer);
+                        xTurner.spin();
+                    });
                     $('div.header > div:last-child').fadeOut(1000);
                     clearInterval(xPTimer);
                     xTimer = window.setInterval(function () {
