@@ -66,6 +66,23 @@ $(document).ready(function(){
                 $.each(xJSON.abilities, function (k, v) {
                     $('.pm-abilities:eq(' + i + ') > ul').append('<li>' + v.ability.name + '</li>');
                 });
+                if(Object.keys(xJSON.held_items).length > 0 ){
+                    console.log(Object.keys(xJSON.held_items).length);
+                    $('.top-ul:eq(' + i + ')').append('<li class="pm-held-items">Held Items:<ul></ul></li>');
+                    $.each(xJSON.held_items, function(k,v){
+                        $('.top-ul:eq(' + i + ') li:last-child > ul').append('<li>' + v.item.name + '</li>');
+                    });
+                }
+                if(Object.keys(xJSON.moves).length > 0){
+                    var x = 1;
+                    $('.top-ul:eq(' + i + ')').append('<li class="pm-moves">Top 5 Moves:<ul></ul></li>');
+                    $.each(xJSON.moves, function(k,v){
+                        $('.top-ul:eq(' + i + ') li:last-child > ul').append('<li>' + v.move.name + '</li>');
+                        if(x++>4){
+                            return false;
+                        }
+                    });
+                }
                 $('.frame:eq(' + i + ')').fadeIn(1500, function () {
                     $('.frame:eq(' + i + ')').toggleClass('transit');
                 });

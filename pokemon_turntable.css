@@ -41,10 +41,10 @@ div#status > span{
 div#carousel{
     padding-top:30px;
     position:absolute;
-    top:30%;
+    top:160px;
     height:70%;
     width:100%;
-    perspective:1200px;
+    perspective:800px;
     margin-bottom:3rem;
     overflow:hidden;
     z-index:0;
@@ -83,14 +83,14 @@ div#spinner{
     width:350px;
     height:auto;
     margin: auto;
-    transform-origin:50% 50% -1000px;
+    transform-origin:50% 50% -1200px;
     transition:transform 2s;
 }
 
 #spinner .frame{
     position:absolute;
     width:100%;
-    transform-origin:50% 50% -1000px;
+    transform-origin:50% 50% -1200px;
     height:auto;
     padding:8px;
     border-radius:5px;
